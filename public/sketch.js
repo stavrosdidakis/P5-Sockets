@@ -20,11 +20,14 @@ function setup() {
   socket.on('clickEvent', newDrawing);
 }
 
+//When new data are received from the socket, run the newDrawing function
+//to create a new object from the class
 function newDrawing(data){
   console.log(data);
   circleObject.push(new Circle(data.xData, data.yData, data.speedXData, data.speedYData, data.radiusData, data.rData, data.gData, data.bData, data.lifeData, random(100,1000)));
 }
 
+//On mouse press, create a new circle object
 function mousePressed(){
   let speedX = random(10.) - 5.;
   let speedY = random(10.) - 5.;
@@ -34,6 +37,7 @@ function mousePressed(){
   let b = sp.Color_Blue;
   let life = parseInt(random(100,1000));
 
+  //Create a new object from the class in the array
   circleObject.push(new Circle(mouseX, mouseY, speedX, speedY, radiusCircle, r, g, b, life));
   let data = {
     xData: mouseX,
@@ -62,6 +66,7 @@ function draw() {
   }
 }
 
+//Circle class
 function Circle(_x, _y, _speedX, _speedY, _radius, _r, _g, _b, _timer){
   this.x = _x;
   this.y = _y;
